@@ -32,6 +32,13 @@
             <p class="empty-msg">まだ何も記録されていません</p>
         </div>
         <button onclick="clearAll()">すべてリセット</button>
+
+<!-- ↓これを追加 -->
+<div id="confirm-area" style="display:none;">
+  <p>本当に削除しますか？</p>
+  <button onclick="confirmClear()">削除する</button>
+  <button onclick="cancelClear()">キャンセル</button>
+</div>
     </section>    
 </main>
  <script src="script.js"></script>

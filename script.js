@@ -130,14 +130,23 @@ function removeItem(id){
     saveLog();
 }
 
-function clearAll(){
-    if(log.length === 0)return;
-    if (confirm("記録を全て削除しますか？")){
-        log = [];
-        renderLog();
-        updateTotal();
-        saveLog();
-    }
+function clearAll() {
+  if (log.length === 0) return;
+  
+  const confirmed = document.getElementById("confirm-area");
+  confirmed.style.display = "block";
+}
+
+function confirmClear() {
+  log = [];
+  renderLog();
+  updateTotal();
+  saveLog();
+  document.getElementById("confirm-area").style.display = "none";
+}
+
+function cancelClear() {
+  document.getElementById("confirm-area").style.display = "none";
 }
 
 function saveLog(){

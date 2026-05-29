@@ -188,3 +188,53 @@ button[onclick="clearAll()"]:hover {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
 }
+
+/* 確認エリア */
+#confirm-area {
+  margin-top: 12px;
+  padding: 16px;
+  background: #1a1a1c;
+  border: 1px solid rgba(255, 90, 90, 0.3);
+  border-radius: 12px;
+  text-align: center;
+}
+
+#confirm-area p {
+  font-size: 14px;
+  color: #f0f0ee;
+  margin-bottom: 12px;
+}
+
+#confirm-area button {
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 0 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* 削除ボタン（赤） */
+#confirm-area button[onclick="confirmClear()"] {
+  background: #ff5a5a;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+}
+
+#confirm-area button[onclick="confirmClear()"]:hover {
+  background: #e04444;
+}
+
+/* キャンセルボタン（透明） */
+#confirm-area button[onclick="cancelClear()"] {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #888884;
+}
+
+#confirm-area button[onclick="cancelClear()"]:hover {
+  border-color: #f0f0ee;
+  color: #f0f0ee;
+}
