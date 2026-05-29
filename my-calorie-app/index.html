@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>うさけん</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+    <header>
+        <h1>たべたもの</h1>
+        <div id="today-date"></div>
+    </header>
+    <main>
+        <div id="tab-bar"></div>
+        <div id="menu-grid"></div>
+    <script src="script.js"></script>
+
+    <div id="total-section">
+        <span>合計</span>
+        <span id="total-kcal">0</span>
+        <span>kcal</span>
+        <div id="goal-remaining"></div>
+        <div id="progress-bar"></div>
+    <section>
+        <h2>今日の記録</h2>
+        <div id="log-list">
+            <p class="empty-msg">まだ何も記録されていません</p>
+        </div>
+        <button onclick="clearAll()">すべてリセット</button>
+    </section>    
+</body>    
+</html>
