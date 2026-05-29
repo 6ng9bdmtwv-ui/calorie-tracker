@@ -1,0 +1,190 @@
+/* ページ全体の設定 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0e0e0f;
+  color: #f0f0ee;
+  font-family: "Noto Sans JP", sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 40px 24px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+h1 {
+  font-family: "Syne", sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* メインエリア */
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* タブ */
+.tab-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  color: #888884;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #c8f135;
+  border-color: #c8f135;
+  color: #0e0e0f;
+  font-weight: 700;
+}
+
+/* メニューグリッド */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+/* メニューボタン */
+.menu-btn {
+  background: #1a1a1c;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 16px 12px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  color: #f0f0ee;
+  font-family: "Noto Sans JP", sans-serif;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.menu-btn:hover {
+  background: #242426;
+  transform: scale(0.97);
+}
+
+/* 合計カード */
+#total-section {
+  background: #1a1a1c;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+#total-kcal {
+  font-family: "Syne", sans-serif;
+  font-size: 56px;
+  font-weight: 800;
+  color: #c8f135;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+#goal-remaining {
+  font-size: 13px;
+  color: #888884;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+/* プログレスバー */
+#progress-bar {
+  height: 6px;
+  background: #c8f135;
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 記録リスト */
+h2 {
+  font-family: "Syne", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.log-list {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.empty-msg {
+  padding: 24px;
+  text-align: center;
+  color: #888884;
+  font-size: 14px;
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #1a1a1c;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 14px;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+/* リセットボタン */
+button[onclick="clearAll()"] {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  color: #888884;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+button[onclick="clearAll()"]:hover {
+  border-color: #ff5a5a;
+  color: #ff5a5a;
+}
+
+/* スマホ対応 */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  #total-kcal {
+    font-size: 48px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
