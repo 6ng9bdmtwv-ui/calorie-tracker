@@ -140,6 +140,10 @@ function clearAll(){
     }
 }
 
+function saveLog(){
+    localStorage.setItem("log",JSON.stringify(log));
+}
+
 
 
 init();
