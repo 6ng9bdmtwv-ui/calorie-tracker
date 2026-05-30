@@ -16,7 +16,22 @@
         <div id="today-date"></div>
     </header>
     <main>
+        <section id="add-menu-section">
+            <h2>メニューを追加</h2>
+            <div id="add-menu-form">
+                <select id="input-category-select">
+                    <option value="">＋ 新しいお店を追加</option>
+                </select>
+                <input type="text" id="input-category-new" placeholder="新しいお店の名前" style="display:none;" />
+                <input type="text" id="input-name" placeholder="メニュー名" />
+                <input type="number" id="input-kcal" placeholder="kcal" />
+                <button onclick="addMenu()">追加する</button>
+            </div>
+        </section>
         <div id="tab-bar"></div>
+       <button onclick="deleteTab()" id="delete-tab-btn" style="display:none;">このお店を削除</button>
+        <button onclick="toggleDeleteMode()" id="delete-mode-btn">削除モード</button>
+        <button onclick="deleteTab()" id="delete-tab-btn" style="display:none;">このお店を削除</button>
         <div id="menu-grid"></div>
 
     <div id="total-section">
@@ -32,13 +47,11 @@
             <p class="empty-msg">まだ何も記録されていません</p>
         </div>
         <button onclick="clearAll()">すべてリセット</button>
-
-<!-- ↓これを追加 -->
-<div id="confirm-area" style="display:none;">
-  <p>本当に削除しますか？</p>
-  <button onclick="confirmClear()">削除する</button>
-  <button onclick="cancelClear()">キャンセル</button>
-</div>
+        <div id="confirm-area" style="display:none;">
+            <p>本当に削除しますか？</p>
+            <button onclick="confirmClear()">削除する</button>
+            <button onclick="cancelClear()">キャンセル</button>
+        </div>
     </section>    
 </main>
  <script src="script.js"></script>

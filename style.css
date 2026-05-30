@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: #0e0e0f;
-  color: #f0f0ee;
+  background-color: #FDFBF7;
+  color: #6E5542;
   font-family: "Noto Sans JP", sans-serif;
   min-height: 100vh;
 }
@@ -24,6 +24,140 @@ h1 {
   letter-spacing: -0.03em;
 }
 
+/* メニュー追加フォーム */
+#add-menu-section {
+  background: #F0ECE1;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+#add-menu-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#add-menu-form input {
+  padding: 12px 16px;
+  background: #FDFBF7;
+  border: 1px solid rgba(110, 85, 66, 0.2);
+  border-radius: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  color: #6E5542;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#add-menu-form input:focus {
+  border-color: #DA291C;
+}
+
+#add-menu-form button {
+  padding: 12px;
+  background: #DA291C;
+  border: none;
+  border-radius: 10px;
+  color: #FDFBF7;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#add-menu-form button:hover {
+  background: #C85C50;
+}
+
+
+/* 削除モードボタン */
+#delete-mode-btn {
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid rgba(110, 85, 66, 0.3);
+  border-radius: 999px;
+  color: #6E5542;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  margin-bottom: 10px;
+}
+
+#delete-mode-btn:hover {
+  border-color: #C85C50;
+  color: #C85C50;
+}
+
+/* 削除モード中はボタンを赤く */
+#delete-mode-btn.active {
+  background: #C85C50;
+  border-color: #C85C50;
+  color: #FDFBF7;
+}
+
+/* お店削除ボタン */
+#delete-tab-btn {
+  display: none;
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid #C85C50;
+  border-radius: 999px;
+  color: #C85C50;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+#delete-tab-btn:hover {
+  background: #C85C50;
+  color: #FDFBF7;
+}
+
+/* ドロップダウン */
+#input-category-select {
+  padding: 12px 16px;
+  background: #FDFBF7;
+  border: 1px solid rgba(110, 85, 66, 0.2);
+  border-radius: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  color: #6E5542;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236E5542' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+#input-category-select:focus {
+  border-color: #DA291C;
+}
+
+/* 削除モード中のメニューボタン */
+.menu-btn.delete-mode {
+  border: 1px solid rgba(200, 92, 80, 0.4);
+  background: #F9E8E6;
+}
+
+.menu-btn.delete-mode:hover {
+  background: #C85C50;
+  color: #FDFBF7;
+}
+
+.m-delete {
+  display: block;
+  font-size: 12px;
+  color: #C85C50;
+  margin-top: 4px;
+}
 /* メインエリア */
 main {
   max-width: 600px;
@@ -46,16 +180,16 @@ main {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 999px;
-  color: #888884;
+  color: #DA291C;
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
 }
 
 .tab-btn.active {
-  background: #c8f135;
-  border-color: #c8f135;
-  color: #0e0e0f;
+  background: #DA291C;
+  border-color: #DA291C;
+  color: #3E2723;
   font-weight: 700;
 }
 
@@ -68,26 +202,26 @@ main {
 
 /* メニューボタン */
 .menu-btn {
-  background: #1a1a1c;
-  border: 1px solid rgba(255,255,255,0.08);
+  background: #F0ECE1;
+  border: 0px solid rgba(240, 232, 191, 0.08);
   border-radius: 12px;
   padding: 16px 12px;
   cursor: pointer;
   text-align: center;
   width: 100%;
-  color: #f0f0ee;
+  color: #6E5542;
   font-family: "Noto Sans JP", sans-serif;
   transition: background 0.15s, transform 0.1s;
 }
 
 .menu-btn:hover {
-  background: #242426;
+  background: #E8B066;
   transform: scale(0.97);
 }
 
 /* 合計カード */
 #total-section {
-  background: #1a1a1c;
+  background: #F0ECE1;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   padding: 24px;
@@ -97,14 +231,14 @@ main {
   font-family: "Syne", sans-serif;
   font-size: 56px;
   font-weight: 800;
-  color: #c8f135;
+  color: #C85C50;
   letter-spacing: -0.04em;
   line-height: 1;
 }
 
 #goal-remaining {
   font-size: 13px;
-  color: #888884;
+  color: #6E5542;
   margin-top: 8px;
   margin-bottom: 12px;
 }
@@ -112,7 +246,7 @@ main {
 /* プログレスバー */
 #progress-bar {
   height: 6px;
-  background: #c8f135;
+  background: #C85C50;
   border-radius: 999px;
   width: 0%;
   transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -129,13 +263,14 @@ h2 {
 .log-list {
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
+  
   overflow: hidden;
 }
 
 .empty-msg {
   padding: 24px;
   text-align: center;
-  color: #888884;
+  color: #6E5542;
   font-size: 14px;
 }
 
@@ -144,9 +279,45 @@ h2 {
   align-items: center;
   justify-content: space-between;
   padding: 14px 18px;
-  background: #1a1a1c;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: #F0ECE1;
+  border-bottom: 1px solid rgba(110, 85, 66, 0.1);
   font-size: 14px;
+}
+
+.log-item span:first-child {
+  flex: 1;
+  color: #6E5542;
+}
+
+.log-item span:nth-child(2) {
+  font-weight: 600;
+  color: #C85C50;
+  min-width: 80px;
+  text-align: right;
+  margin-right: 12px;
+}
+
+/* ×ボタン */
+.log-item button {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(110, 85, 66, 0.2);
+  background: transparent;
+  color: #6E5542;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.log-item button:hover {
+  background: #C85C50;
+  color: #FDFBF7;
+  border-color: #C85C50;
 }
 
 .log-item:last-child {
@@ -162,7 +333,7 @@ button[onclick="clearAll()"] {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
-  color: #888884;
+  color: #6E5542;
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
@@ -170,8 +341,8 @@ button[onclick="clearAll()"] {
 }
 
 button[onclick="clearAll()"]:hover {
-  border-color: #ff5a5a;
-  color: #ff5a5a;
+  border-color: #C85C50;
+  color: #C85C50;
 }
 
 /* スマホ対応 */
@@ -193,15 +364,15 @@ button[onclick="clearAll()"]:hover {
 #confirm-area {
   margin-top: 12px;
   padding: 16px;
-  background: #1a1a1c;
-  border: 1px solid rgba(255, 90, 90, 0.3);
+  background: #FDFBF7;
+  border: 1px solid #C85C50;
   border-radius: 12px;
   text-align: center;
 }
 
 #confirm-area p {
   font-size: 14px;
-  color: #f0f0ee;
+  color: #C85C50;
   margin-bottom: 12px;
 }
 
@@ -217,9 +388,9 @@ button[onclick="clearAll()"]:hover {
 
 /* 削除ボタン（赤） */
 #confirm-area button[onclick="confirmClear()"] {
-  background: #ff5a5a;
+  background: #C85C50;
   border: none;
-  color: #fff;
+  color: #FDFBF7;
   font-weight: 700;
 }
 

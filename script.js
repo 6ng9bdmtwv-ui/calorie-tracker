@@ -21,7 +21,9 @@ const categories = {
 
 let log = [];
 let activeTab = 0;
+let isDeleteMode = false;
 const tabKeys = Object.keys(categories);
+
 function init(){
     const saved = localStorage.getItem("log");
     if(saved){
@@ -30,7 +32,8 @@ function init(){
     const now = new Date();
     const options = {year: "numeric", month: "long", day:"numeric", weekday: "long"};
     document.getElementById("today-date").textContent = now.toLocaleDateString("ja-JP",options);
-
+   
+    renderCategorySelect(); 
     renderTabs();
     renderMenu();
     renderLog();
@@ -61,15 +64,22 @@ function renderMenu(){
 
     const items = categories[tabKeys[activeTab]];
 
-    items.forEach((item) =>{
+    items.forEach((item,index) =>{
         const btn = document.createElement("button");
         btn.className = "menu-btn";
         btn.innerHTML = `
-        <span class = "m-icon">${item.name}</span>
-        <span class = "m-icon">${item.kcal}kcal</span>`;
+         <span class="m-name">${item.name}</span>
+        <span class="m-kcal">${item.kcal}kcal</span>
+         ${isDeleteMode ? '<span class="m-delete">×</span>' : ""}
+            `;
 
-        btn.addEventListener("click", () => addItem(item));
+        if(isDeleteMode){
+            btn.addEventListener("click", () => deleteMenuItem(index));
+        }else {
+            btn.addEventListener("click", () => addItem(item));
+        }
         grid.appendChild(btn);
+
     });
 }
 
@@ -123,6 +133,7 @@ function updateTotal(){
     const percent = Math.min((total/ GOAL_KCAL)*100, 100);
     document.getElementById("progress-bar").style.width = percent + "%";
 }
+
 function removeItem(id){
     log = log. filter((item)=> item.id !== id);
     renderLog();
@@ -135,6 +146,75 @@ function clearAll() {
   
   const confirmed = document.getElementById("confirm-area");
   confirmed.style.display = "block";
+}
+
+function addMenu(){
+  const selectValue = document.getElementById("input-category-select").value;
+  const newValue = document.getElementById("input-category-new").value.trim();
+  const category = selectValue !== "" ? selectValue : newValue;
+
+  const name = document.getElementById("input-name").value.trim();
+  const kcal = Number(document.getElementById("input-kcal").value);
+
+  if(category === "" || name === "" || kcal <= 0){
+    alert("お店の名前、メニュー名、kcalを全て入力してください");
+    return;
+  }
+
+  if(!categories[category]){
+    categories[category] = [];
+  }
+
+  categories[category].push({ name: name, kcal: kcal });
+
+  tabKeys.length = 0;
+  Object.keys(categories).forEach(key => tabKeys.push(key));
+
+  document.getElementById("input-category-select").value = "";
+  document.getElementById("input-category-new").value = "";
+  document.getElementById("input-category-new").style.display = "none";
+  document.getElementById("input-name").value = "";
+  document.getElementById("input-kcal").value = "";
+
+  renderCategorySelect();
+  renderTabs();
+  renderMenu();
+}
+function deleteMenuItem(index){
+    const currentCategory = tabKeys[activeTab];
+    categories[currentCategory].splice(index, 1);
+    renderMenu();
+}
+
+function deleteTab(){
+    const currentCategory = tabKeys[activeTab];
+    delete categories[currentCategory];
+
+    tabKeys.length = 0;
+    Object.keys(categories).forEach(key => tabKeys.push(key));
+
+    activeTab = 0;
+    renderCategorySelect();
+    renderTabs();
+    renderMenu();
+}
+
+function toggleDeleteMode(){
+    isDeleteMode = !isDeleteMode;
+
+    const btn = document.getElementById("delete-mode-btn");
+    const deleteTabBtn = document.getElementById("delete-tab-btn");
+
+    if(isDeleteMode){
+        btn.textContent = "削除モード終了";
+        deleteTabBtn.style.display = "block";
+    }else{
+        btn.textContent = "削除モード";
+        btn.classList.remove("active"); 
+        deleteTabBtn.style.display ="none";
+    }
+
+    renderMenu();
 }
 
 function confirmClear() {
@@ -153,6 +233,29 @@ function saveLog(){
     localStorage.setItem("log",JSON.stringify(log));
 }
 
+function renderCategorySelect() {
+  const select = document.getElementById("input-category-select");
+  const currentValue = select.value;
 
+  select.innerHTML = '<option value="">＋ 新しいお店を追加</option>';
+
+  tabKeys.forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = key;
+    select.appendChild(option);
+  });
+
+  select.value = currentValue;
+}
+
+document.getElementById("input-category-select").addEventListener("change", function() {
+  const newInput = document.getElementById("input-category-new");
+  if (this.value === "") {
+    newInput.style.display = "block";
+  } else {
+    newInput.style.display = "none";
+  }
+});
 
 init();
