@@ -1,4 +1,12 @@
 /* ページ全体の設定 */
+:root {
+  --color-bg: #FDFBF7;
+  --color-surface: #F0ECE1;
+  --color-text: #6E5542;
+  --color-accent: #DA291C;
+  --color-accent-soft: #C85C50;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,8 +14,8 @@
 }
 
 body {
-  background-color: #FDFBF7;
-  color: #6E5542;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: "Noto Sans JP", sans-serif;
   min-height: 100vh;
 }
@@ -26,7 +34,7 @@ h1 {
 
 /* メニュー追加フォーム */
 #add-menu-section {
-  background: #F0ECE1;
+  background: var(--color-surface);
   border-radius: 16px;
   padding: 20px;
 }
@@ -40,26 +48,26 @@ h1 {
 
 #add-menu-form input {
   padding: 12px 16px;
-  background: #FDFBF7;
+  background: var(--color-bg);
   border: 1px solid rgba(110, 85, 66, 0.2);
   border-radius: 10px;
   font-family: "Noto Sans JP", sans-serif;
   font-size: 14px;
-  color: #6E5542;
+  color: var(--color-text);
   outline: none;
   transition: border-color 0.2s;
 }
 
 #add-menu-form input:focus {
-  border-color: #DA291C;
+  border-color: var(--color-accent);
 }
 
 #add-menu-form button {
   padding: 12px;
-  background: #DA291C;
+  background: var(--color-accent);
   border: none;
   border-radius: 10px;
-  color: #FDFBF7;
+  color: var(--color-bg);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -68,7 +76,7 @@ h1 {
 }
 
 #add-menu-form button:hover {
-  background: #C85C50;
+  background: var(--color-accent-soft);
 }
 
 
@@ -78,7 +86,7 @@ h1 {
   background: transparent;
   border: 1px solid rgba(110, 85, 66, 0.3);
   border-radius: 999px;
-  color: #6E5542;
+  color: var(--color-text);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
@@ -87,15 +95,15 @@ h1 {
 }
 
 #delete-mode-btn:hover {
-  border-color: #C85C50;
-  color: #C85C50;
+  border-color: var(--color-accent-soft);
+  color: var(--color-accent-soft);
 }
 
 /* 削除モード中はボタンを赤く */
 #delete-mode-btn.active {
-  background: #C85C50;
-  border-color: #C85C50;
-  color: #FDFBF7;
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+  color: var(--color-bg);
 }
 
 /* お店削除ボタン */
@@ -103,9 +111,9 @@ h1 {
   display: none;
   padding: 8px 18px;
   background: transparent;
-  border: 1px solid #C85C50;
+  border: 1px solid var(--color-accent-soft);
   border-radius: 999px;
-  color: #C85C50;
+  color: var(--color-accent-soft);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
@@ -114,19 +122,19 @@ h1 {
 }
 
 #delete-tab-btn:hover {
-  background: #C85C50;
-  color: #FDFBF7;
+  background: var(--color-accent-soft);
+  color: var(--color-bg);
 }
 
 /* ドロップダウン */
 #input-category-select {
   padding: 12px 16px;
-  background: #FDFBF7;
+  background: var(--color-bg);
   border: 1px solid rgba(110, 85, 66, 0.2);
   border-radius: 10px;
   font-family: "Noto Sans JP", sans-serif;
   font-size: 14px;
-  color: #6E5542;
+  color: var(--color-text);
   outline: none;
   cursor: pointer;
   width: 100%;
@@ -138,7 +146,7 @@ h1 {
 }
 
 #input-category-select:focus {
-  border-color: #DA291C;
+  border-color: var(--color-accent);
 }
 
 /* 削除モード中のメニューボタン */
@@ -148,14 +156,14 @@ h1 {
 }
 
 .menu-btn.delete-mode:hover {
-  background: #C85C50;
-  color: #FDFBF7;
+  background: var(--color-accent-soft);
+  color: var(--color-bg);
 }
 
 .m-delete {
   display: block;
   font-size: 12px;
-  color: #C85C50;
+  color: var(--color-accent-soft);
   margin-top: 4px;
 }
 /* メインエリア */
@@ -180,15 +188,15 @@ main {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 999px;
-  color: #DA291C;
+  color: var(--color-accent);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
 }
 
 .tab-btn.active {
-  background: #DA291C;
-  border-color: #DA291C;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   color: #3E2723;
   font-weight: 700;
 }
@@ -202,26 +210,49 @@ main {
 
 /* メニューボタン */
 .menu-btn {
-  background: #F0ECE1;
+  background: var(--color-surface);
   border: 0px solid rgba(240, 232, 191, 0.08);
   border-radius: 12px;
-  padding: 16px 12px;
+  padding: 14px 16px;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   width: 100%;
-  color: #6E5542;
+  color: var(--color-text);
   font-family: "Noto Sans JP", sans-serif;
   transition: background 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.m-name {
+  font-size: 15px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.m-kcal {
+  font-size: 14px;
+  color: var(--color-accent-soft);
+  font-weight: 600;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.m-delete {
+  font-size: 12px;
+  color: var(--color-accent-soft);
+  margin-left: 8px;
 }
 
 .menu-btn:hover {
   background: #E8B066;
-  transform: scale(0.97);
+  transform: scale(0.99);
 }
 
 /* 合計カード */
 #total-section {
-  background: #F0ECE1;
+  background: var(--color-surface);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   padding: 24px;
@@ -231,14 +262,14 @@ main {
   font-family: "Syne", sans-serif;
   font-size: 56px;
   font-weight: 800;
-  color: #C85C50;
+  color: var(--color-accent-soft);
   letter-spacing: -0.04em;
   line-height: 1;
 }
 
 #goal-remaining {
   font-size: 13px;
-  color: #6E5542;
+  color: var(--color-text);
   margin-top: 8px;
   margin-bottom: 12px;
 }
@@ -246,7 +277,7 @@ main {
 /* プログレスバー */
 #progress-bar {
   height: 6px;
-  background: #C85C50;
+  background: var(--color-accent-soft);
   border-radius: 999px;
   width: 0%;
   transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -270,7 +301,7 @@ h2 {
 .empty-msg {
   padding: 24px;
   text-align: center;
-  color: #6E5542;
+  color: var(--color-text);
   font-size: 14px;
 }
 
@@ -278,20 +309,20 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
-  background: #F0ECE1;
+  padding: 12px 16px;
+  background: var(--color-surface);
   border-bottom: 1px solid rgba(110, 85, 66, 0.1);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .log-item span:first-child {
   flex: 1;
-  color: #6E5542;
+  color: var(--color-text);
 }
 
 .log-item span:nth-child(2) {
   font-weight: 600;
-  color: #C85C50;
+  color: var(--color-accent-soft);
   min-width: 80px;
   text-align: right;
   margin-right: 12px;
@@ -304,7 +335,7 @@ h2 {
   border-radius: 999px;
   border: 1px solid rgba(110, 85, 66, 0.2);
   background: transparent;
-  color: #6E5542;
+  color: var(--color-text);
   font-size: 14px;
   cursor: pointer;
   display: flex;
@@ -315,9 +346,9 @@ h2 {
 }
 
 .log-item button:hover {
-  background: #C85C50;
-  color: #FDFBF7;
-  border-color: #C85C50;
+  background: var(--color-accent-soft);
+  color: var(--color-bg);
+  border-color: var(--color-accent-soft);
 }
 
 .log-item:last-child {
@@ -333,7 +364,7 @@ button[onclick="clearAll()"] {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 12px;
-  color: #6E5542;
+  color: var(--color-text);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
@@ -341,8 +372,8 @@ button[onclick="clearAll()"] {
 }
 
 button[onclick="clearAll()"]:hover {
-  border-color: #C85C50;
-  color: #C85C50;
+  border-color: var(--color-accent-soft);
+  color: var(--color-accent-soft);
 }
 
 /* スマホ対応 */
@@ -364,15 +395,15 @@ button[onclick="clearAll()"]:hover {
 #confirm-area {
   margin-top: 12px;
   padding: 16px;
-  background: #FDFBF7;
-  border: 1px solid #C85C50;
+  background: var(--color-bg);
+  border: 1px solid var(--color-accent-soft);
   border-radius: 12px;
   text-align: center;
 }
 
 #confirm-area p {
   font-size: 14px;
-  color: #C85C50;
+  color: var(--color-accent-soft);
   margin-bottom: 12px;
 }
 
@@ -388,9 +419,9 @@ button[onclick="clearAll()"]:hover {
 
 /* 削除ボタン（赤） */
 #confirm-area button[onclick="confirmClear()"] {
-  background: #C85C50;
+  background: var(--color-accent-soft);
   border: none;
-  color: #FDFBF7;
+  color: var(--color-bg);
   font-weight: 700;
 }
 

@@ -1,7 +1,7 @@
 const GOAL_KCAL = 1600;
 
 const categories = {
-    "🐮 すき家　メイン🐮": [
+    "すき家 メイン": [
         {name: "たたき丼（ごはん140g）",kcal: 505 },
         {name: "お子様そぼろ",kcal: 319},
         {name: "お子様カレー",kcal: 258},
@@ -10,7 +10,7 @@ const categories = {
         {name: "鮭",kcal: 120},
         {name: "さば",kcal: 235},
     ],
-    "🐮 すき家　サイド🐮":[
+    "すき家 サイド":[
         {name: "唐揚げ１個",kcal: 61},
         {name: "おんたま",kcal: 84},
         {name: "りんご", kcal: 19},
