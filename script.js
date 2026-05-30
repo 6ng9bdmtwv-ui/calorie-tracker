@@ -22,6 +22,7 @@ const categories = {
 let log = [];
 let activeTab = 0;
 let isDeleteMode = false;
+let deletedItems = [] //これがゴミ箱
 const tabKeys = Object.keys(categories);
 
 function init(){
@@ -32,6 +33,11 @@ function init(){
     const now = new Date();
     const options = {year: "numeric", month: "long", day:"numeric", weekday: "long"};
     document.getElementById("today-date").textContent = now.toLocaleDateString("ja-JP",options);
+
+    const savedDeleted = localStorage.getItem("deletedItems");
+    if(savedDeleted){
+        deletedItems = JSON.parse(savedDeleted);
+    }
    
     renderCategorySelect(); 
     renderTabs();
@@ -180,23 +186,41 @@ function addMenu(){
   renderTabs();
   renderMenu();
 }
+
 function deleteMenuItem(index){
     const currentCategory = tabKeys[activeTab];
-    categories[currentCategory].splice(index, 1);
+    const deleted = categories[currentCategory].splice(index, 1)[0];
+
+    deletedItems.push({
+        type: "item",
+        category: currentCategory,
+        item: deleted,
+    });
+
+    saveDeleted();
     renderMenu();
+    renderTrash();
 }
 
 function deleteTab(){
     const currentCategory = tabKeys[activeTab];
-    delete categories[currentCategory];
+    deletedItems.push({
+        type: "tab",
+        category: currentCategory,
+        items: categories[currentCategory],
+    });
 
+    delete categories[currentCategory];
     tabKeys.length = 0;
     Object.keys(categories).forEach(key => tabKeys.push(key));
 
+
     activeTab = 0;
+    saveDeleted();
     renderCategorySelect();
     renderTabs();
     renderMenu();
+    renderTrash();
 }
 
 function toggleDeleteMode(){
@@ -204,14 +228,18 @@ function toggleDeleteMode(){
 
     const btn = document.getElementById("delete-mode-btn");
     const deleteTabBtn = document.getElementById("delete-tab-btn");
-
+    const trashSection = document.getElementById("trash-section");
+    
     if(isDeleteMode){
         btn.textContent = "削除モード終了";
-        deleteTabBtn.style.display = "block";
+        btn.classList.add("active");
+        deleteTabBtn.style.display = "inline-block";
+        trashSection.style.display = "block";
     }else{
         btn.textContent = "削除モード";
         btn.classList.remove("active"); 
         deleteTabBtn.style.display ="none";
+        trashSection.style.display = "none";
     }
 
     renderMenu();
@@ -231,6 +259,66 @@ function cancelClear() {
 
 function saveLog(){
     localStorage.setItem("log",JSON.stringify(log));
+}
+
+function saveDeleted(){
+    localStorage.setItem("deletedItems",JSON.stringify(deletedItems));
+}
+
+function renderTrash(){
+    const trashList = document.getElementById("trash-list");
+
+    if(deletedItems.length === 0){
+        trashList.innerHTML = '<p class="empty-msg">削除したものはありません</p>'
+        return;
+    }
+
+    trashList.innerHTML ="";
+
+    [...deletedItems].reverse().forEach((deleted, index) => {
+        const div = document.createElement("div");
+        div.className = "log-item";
+
+        if(deleted.type ==="item"){
+            div.innerHTML =`
+            <span>${deleted.category} / ${deleted.item.name}</span>
+            <span>${deleted.item.kcal}kcal</span>
+            <button onclick="restoreItem(${deletedItems.length - 1 - index})">復活</button>
+            `;
+        }else {
+            div.innerHTML =`
+            <span>🗂 ${deleted.category}（${deleted.items.length}件）</span>
+            <span></span>
+            <button onclick="restoreItem(${deletedItems.length - 1 - index})">復活</button>
+            `;
+        }
+
+        trashList.appendChild(div);
+    });
+}
+
+function restoreItem(index){
+    const deleted = deletedItems[index];
+
+    if(deleted.type === "item"){
+        if(!categories[deleted.category]){
+            categories[deleted.category] =[];
+            tabKeys.length = 0;
+            Object.keys(categories).forEach(key => tabKeys.push(key));
+        }
+        categories[deleted.category].push(deleted.item);
+    }else{
+        categories[deleted.category] = deleted.items;
+        tabKeys.length = 0;
+        Object.keys(categories).forEach(key => tabKeys.push(key));
+    }
+
+    deletedItems.splice(index, 1);
+    saveDeleted();
+    renderCategorySelect();
+    renderTabs();
+    renderMenu();
+    renderTrash();
 }
 
 function renderCategorySelect() {

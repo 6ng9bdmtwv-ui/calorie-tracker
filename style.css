@@ -59,12 +59,12 @@ h1 {
 }
 
 #add-menu-form input:focus {
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-soft);
 }
 
 #add-menu-form button {
   padding: 12px;
-  background: var(--color-accent);
+  background: var(--color-accent-soft);
   border: none;
   border-radius: 10px;
   color: var(--color-bg);
@@ -117,7 +117,7 @@ h1 {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
-  margin-left: 8px;
+  margin-bottom: 10px;
   transition: background 0.2s, color 0.2s;
 }
 
@@ -188,16 +188,16 @@ main {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 999px;
-  color: var(--color-accent);
+  color: var(--color-accent-soft);
   font-family: "Noto Sans JP", sans-serif;
   font-size: 13px;
   cursor: pointer;
 }
 
 .tab-btn.active {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: #3E2723;
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+  color: var(--color-surface);
   font-weight: 700;
 }
 
@@ -426,17 +426,27 @@ button[onclick="clearAll()"]:hover {
 }
 
 #confirm-area button[onclick="confirmClear()"]:hover {
-  background: #e04444;
+  background: var(--color-accent);
 }
 
 /* キャンセルボタン（透明） */
 #confirm-area button[onclick="cancelClear()"] {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.2);
-  color: #888884;
+  color: var(--color-text);
 }
 
 #confirm-area button[onclick="cancelClear()"]:hover {
-  border-color: #f0f0ee;
-  color: #f0f0ee;
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+/* 復活ボタン */
+#trash-list .log-item button {
+  width: auto;
+  height: auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
 }
