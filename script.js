@@ -388,6 +388,6 @@ window.deleteTab = deleteTab;
 window.removeItem = removeItem;
 window.deleteMenuItem = deleteMenuItem;
 window.restoreItem = restoreItem;
-
+window.removeItem = removeItem;
 
 init();
