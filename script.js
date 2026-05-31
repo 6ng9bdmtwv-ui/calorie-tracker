@@ -38,6 +38,16 @@ function init(){
     if(savedDeleted){
         deletedItems = JSON.parse(savedDeleted);
     }
+
+    const savedCategories = localStorage.getItem("categories");
+    if(savedCategories){
+        const loaded = JSON.parse(savedCategories);
+        Object.keys(loaded).forEach(key => {
+            categories[key] = loaded[key];
+        });
+        tabKeys.length = 0;
+        Object.keys(categories).forEach(key => tabKeys.push(key));
+    }
    
     renderCategorySelect(); 
     renderTabs();
@@ -185,6 +195,7 @@ function addMenu(){
   renderCategorySelect();
   renderTabs();
   renderMenu();
+  saveCategories();
 }
 
 function deleteMenuItem(index){
@@ -198,8 +209,10 @@ function deleteMenuItem(index){
     });
 
     saveDeleted();
+    saveCategories();
     renderMenu();
     renderTrash();
+    
 }
 
 function deleteTab(){
@@ -217,6 +230,7 @@ function deleteTab(){
 
     activeTab = 0;
     saveDeleted();
+    saveCategories();
     renderCategorySelect();
     renderTabs();
     renderMenu();
@@ -335,6 +349,10 @@ function renderCategorySelect() {
   });
 
   select.value = currentValue;
+}
+
+function saveCategories(){
+    localStorage.setItm("categories",JSON.stringify(categories));
 }
 
 document.getElementById("input-category-select").addEventListener("change", function() {

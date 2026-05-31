@@ -75,9 +75,7 @@ h1 {
   transition: background 0.2s;
 }
 
-#add-menu-form button:hover {
-  background: var(--color-accent-soft);
-}
+
 
 
 /* 削除モードボタン */
@@ -94,10 +92,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-#delete-mode-btn:hover {
-  border-color: var(--color-accent-soft);
-  color: var(--color-accent-soft);
-}
 
 /* 削除モード中はボタンを赤く */
 #delete-mode-btn.active {
@@ -119,11 +113,6 @@ h1 {
   cursor: pointer;
   margin-bottom: 10px;
   transition: background 0.2s, color 0.2s;
-}
-
-#delete-tab-btn:hover {
-  background: var(--color-accent-soft);
-  color: var(--color-bg);
 }
 
 /* ドロップダウン */
@@ -153,11 +142,6 @@ h1 {
 .menu-btn.delete-mode {
   border: 1px solid rgba(200, 92, 80, 0.4);
   background: #F9E8E6;
-}
-
-.menu-btn.delete-mode:hover {
-  background: var(--color-accent-soft);
-  color: var(--color-bg);
 }
 
 .m-delete {
@@ -245,10 +229,6 @@ main {
   margin-left: 8px;
 }
 
-.menu-btn:hover {
-  background: #E8B066;
-  transform: scale(0.99);
-}
 
 /* 合計カード */
 #total-section {
@@ -345,11 +325,6 @@ h2 {
   flex-shrink: 0;
 }
 
-.log-item button:hover {
-  background: var(--color-accent-soft);
-  color: var(--color-bg);
-  border-color: var(--color-accent-soft);
-}
 
 .log-item:last-child {
   border-bottom: none;
@@ -369,11 +344,6 @@ button[onclick="clearAll()"] {
   font-size: 13px;
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
-}
-
-button[onclick="clearAll()"]:hover {
-  border-color: var(--color-accent-soft);
-  color: var(--color-accent-soft);
 }
 
 /* スマホ対応 */
@@ -425,19 +395,11 @@ button[onclick="clearAll()"]:hover {
   font-weight: 700;
 }
 
-#confirm-area button[onclick="confirmClear()"]:hover {
-  background: var(--color-accent);
-}
 
 /* キャンセルボタン（透明） */
 #confirm-area button[onclick="cancelClear()"] {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.2);
-  color: var(--color-text);
-}
-
-#confirm-area button[onclick="cancelClear()"]:hover {
-  border-color: var(--color-text);
   color: var(--color-text);
 }
 
@@ -449,4 +411,41 @@ button[onclick="clearAll()"]:hover {
   border-radius: 999px;
   font-size: 12px;
   white-space: nowrap;
+}
+
+/* ホバー */
+@media (hover: hover) {
+  .menu-btn:hover {
+    background: #E8B066;
+    transform: scale(0.99);
+  }
+
+  .tab-btn:hover {
+    opacity: 0.8;
+  }
+
+  .log-item button:hover {
+    background: var(--color-accent-soft);
+    color: var(--color-bg);
+    border-color: var(--color-accent-soft);
+  }
+
+  #delete-mode-btn:hover {
+    border-color: var(--color-accent-soft);
+    color: var(--color-accent-soft);
+  }
+
+  #delete-tab-btn:hover {
+    background: var(--color-accent-soft);
+    color: var(--color-bg);
+  }
+
+  #add-menu-form button:hover {
+    background: var(--color-accent-soft);
+  }
+
+  button[onclick="clearAll()"]:hover {
+    border-color: var(--color-accent-soft);
+    color: var(--color-accent-soft);
+  }
 }
