@@ -1,3 +1,19 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB-mdxGdr6LX9s3Y0NAEhISL-ahRJj4E_4",
+  authDomain: "usaken-c7d17.firebaseapp.com",
+  databaseURL: "https://usaken-c7d17-default-rtdb.firebaseio.com",
+  projectId: "usaken-c7d17",
+  storageBucket: "usaken-c7d17.firebasestorage.app",
+  messagingSenderId: "140797691497",
+  appId: "1:140797691497:web:1301c468c866c9cf9b44f8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
 const GOAL_KCAL = 1600;
 
 const categories = {
@@ -26,34 +42,32 @@ let deletedItems = [] //これがゴミ箱
 const tabKeys = Object.keys(categories);
 
 function init(){
-    const saved = localStorage.getItem("log");
-    if(saved){
-        log = JSON.parse(saved);
-    }
-    const now = new Date();
-    const options = {year: "numeric", month: "long", day:"numeric", weekday: "long"};
-    document.getElementById("today-date").textContent = now.toLocaleDateString("ja-JP",options);
+  const now = new Date();
+  const options = {year: "numeric", month: "long", day:"numeric", weekday: "long"};
+  document.getElementById("today-date").textContent = now.toLocaleDateString("ja-JP",options);
 
-    const savedDeleted = localStorage.getItem("deletedItems");
-    if(savedDeleted){
-        deletedItems = JSON.parse(savedDeleted);
-    }
+  // Firebaseからデータを読み込む
+  get(ref(db, "/")).then((snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
 
-    const savedCategories = localStorage.getItem("categories");
-    if(savedCategories){
-        const loaded = JSON.parse(savedCategories);
-        Object.keys(loaded).forEach(key => {
-            categories[key] = loaded[key];
+      if (data.log) log = data.log;
+      if (data.deletedItems) deletedItems = data.deletedItems;
+      if (data.categories) {
+        Object.keys(data.categories).forEach(key => {
+          categories[key] = data.categories[key];
         });
         tabKeys.length = 0;
         Object.keys(categories).forEach(key => tabKeys.push(key));
+      }
     }
-   
-    renderCategorySelect(); 
+
+    renderCategorySelect();
     renderTabs();
     renderMenu();
     renderLog();
     updateTotal();
+  });
 }
 
 function renderTabs(){
@@ -272,11 +286,11 @@ function cancelClear() {
 }
 
 function saveLog(){
-    localStorage.setItem("log",JSON.stringify(log));
+    set(ref(db, "log"), log);
 }
 
 function saveDeleted(){
-    localStorage.setItem("deletedItems",JSON.stringify(deletedItems));
+    set(ref(db, "deletedItems"), deletedItems);
 }
 
 function renderTrash(){
@@ -352,7 +366,7 @@ function renderCategorySelect() {
 }
 
 function saveCategories(){
-    localStorage.setItm("categories",JSON.stringify(categories));
+    set(ref(db, "categories"), categories);
 }
 
 document.getElementById("input-category-select").addEventListener("change", function() {
