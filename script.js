@@ -378,4 +378,16 @@ document.getElementById("input-category-select").addEventListener("change", func
   }
 });
 
+
+window.clearAll = clearAll;
+window.confirmClear = confirmClear;
+window.cancelClear = cancelClear;
+window.addMenu = addMenu;
+window.toggleDeleteMode = toggleDeleteMode;
+window.deleteTab = deleteTab;
+window.removeItem = removeItem;
+window.deleteMenuItem = deleteMenuItem;
+window.restoreItem = restoreItem;
+
+
 init();
