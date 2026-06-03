@@ -448,4 +448,48 @@ button[onclick="clearAll()"] {
     border-color: var(--color-accent-soft);
     color: var(--color-accent-soft);
   }
+
+  /* クイック追加 */
+#quick-add {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#quick-kcal {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--color-surface);
+  border: 1px solid rgba(110, 85, 66, 0.2);
+  border-radius: 10px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#quick-kcal:focus {
+  border-color: var(--color-accent);
+}
+
+#quick-add button {
+  padding: 12px 20px;
+  background: var(--color-surface);
+  border: 1px solid rgba(110, 85, 66, 0.2);
+  border-radius: 10px;
+  color: var(--color-accent-soft);
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+@media (hover: hover) {
+  #quick-add button:hover {
+    background: #E8B066;
+  }
+}
 }

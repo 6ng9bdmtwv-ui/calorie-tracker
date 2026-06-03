@@ -46,12 +46,20 @@ function init(){
   const options = {year: "numeric", month: "long", day:"numeric", weekday: "long"};
   document.getElementById("today-date").textContent = now.toLocaleDateString("ja-JP",options);
 
-  // Firebaseからデータを読み込む
-  get(ref(db, "/")).then((snapshot) => {
+ get(ref(db, "/")).then((snapshot) => {
     if (snapshot.exists()) {
       const data = snapshot.val();
+      const today = new Date().toLocaleDateString("ja-JP");
 
-      if (data.log) log = data.log;
+      // 日付が今日と同じときだけ記録を読み込む
+      if (data.log && data.savedDate === today) {
+        log = data.log;
+      } else {
+        // 日付が違う → リセットして保存
+        log = [];
+        saveLog();
+      }
+
       if (data.deletedItems) deletedItems = data.deletedItems;
       if (data.categories) {
         Object.keys(data.categories).forEach(key => {
@@ -124,6 +132,26 @@ function addItem(item){
     renderLog();
     updateTotal();
     saveLog();
+}
+
+function quickAdd(){
+  const kcal = Number(document.getElementById("quick-kcal").value);
+
+  if(kcal <= 0){
+    alert("カロリーを入力してください");
+    return;
+  }
+
+  log.push({
+    id: Date.now() + Math.random(),
+    name: kcal + "kcal",
+    kcal: kcal,
+  });
+
+  document.getElementById("quick-kcal").value = "";
+  renderLog();
+  updateTotal();
+  saveLog();
 }
 
 function renderLog(){
@@ -286,7 +314,9 @@ function cancelClear() {
 }
 
 function saveLog(){
-    set(ref(db, "log"), log);
+  const today = new Date().toLocaleDateString("ja-JP");
+  set(ref(db, "log"), log);
+  set(ref(db, "savedDate"), today);  // ← 日付も保存
 }
 
 function saveDeleted(){
@@ -389,5 +419,6 @@ window.removeItem = removeItem;
 window.deleteMenuItem = deleteMenuItem;
 window.restoreItem = restoreItem;
 window.removeItem = removeItem;
+window.quickAdd = quickAdd;
 
 init();
